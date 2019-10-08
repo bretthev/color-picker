@@ -2,6 +2,7 @@ import { NextPage } from "next";
 import { useState } from "react";
 import { ColorType, PaletteType } from "../helpers/types";
 import Button from "../components/Button";
+import { Heading, Copy } from "../components/Typography";
 import {
   fetchCurrentColors,
   updateCurrentColors,
@@ -10,6 +11,7 @@ import {
   deletePaletteById
 } from "../helpers/actions";
 import ColorList from "../components/ColorList";
+import Form from "../components/Form";
 
 interface CartProps {
   selectedColors: ColorType[];
@@ -60,38 +62,43 @@ const Cart: NextPage<CartProps> = ({ selectedColors, savedPalettes }) => {
   };
 
   return (
-    <div>
-      <h1>Your Selected Colors</h1>
-      <ColorList
-        hideActive
-        selectColor={removeColorFromPalette}
-        colorList={activeColors}
-      />
-      <form onSubmit={submitPalette}>
-        <p>Name and save your color palette</p>
-        <input
-          type="text"
-          placeholder="Color palette name"
-          value={paletteName}
-          onChange={handleInput}
+    <>
+      <div>
+        <Heading text={"Your selected colors"} />
+        <ColorList
+          hideActive
+          selectColor={removeColorFromPalette}
+          colorList={activeColors}
         />
-        <Button label="Submit" action={submitPalette} />
-      </form>
-      <h2>Previously saved color palettes</h2>
-      {totalPalettes.map(palette => (
-        <section key={`${Date.now()}` + `${palette.name}`}>
-          <h3>
-            {palette.name} - {palette.colors.length} colors
-          </h3>
-          <ColorList
-            colorList={palette.colors}
-            deletePalette={(e: any) => deletePalette(palette.id || "")}
-            savedPalette
-            hideActive
-          />
-        </section>
-      ))}
-    </div>
+        <Form
+          submit={submitPalette}
+          inputChange={handleInput}
+          inputValue={paletteName}
+        />
+        <Heading text={"Previously saved color palettes"} />
+        {totalPalettes.map(palette => (
+          <section
+            className="saved-palette"
+            key={`${Date.now()}` + `${palette.name}`}
+          >
+            <Copy text={`${palette.name} - ${palette.colors.length} colors`} />
+            <ColorList
+              colorList={palette.colors}
+              deletePalette={(e: any) => deletePalette(palette.id || "")}
+              savedPalette
+              hideActive
+            />
+          </section>
+        ))}
+      </div>
+      <style jsx>{`
+        padding-left: 40px;
+        padding-right: 20px;
+        .saved-palette {
+          padding-left: 0;
+        }
+      `}</style>
+    </>
   );
 };
 

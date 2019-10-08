@@ -12,15 +12,18 @@ const EraseCard: React.FC<EraseProps> = ({ action }) => {
       </div>
       <style jsx>{`
         background-color: #f3f3f3;
-        height: 125px;
+        height: 105px;
         display: flex;
         position: relative;
         align-items: center;
         justify-content: center;
         border-radius: 6px;
-        border: 15px solid #f3f3f3;
         :hover {
           cursor: pointer;
+        }
+        @media (min-width: 600px) {
+          height: 125px;
+          border: 15px solid #f3f3f3;
         }
       `}</style>
     </>

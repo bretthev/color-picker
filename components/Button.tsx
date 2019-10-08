@@ -1,28 +1,31 @@
-import {globalColors} from '../helpers/styleUtils'
+import { globalColors, fontSizes, fontFamily } from "../helpers/styleUtils";
 
 interface ButtonProps extends React.HTMLAttributes<HTMLElement> {
-    label: string;
-    action: (e: any) => void;
+  label: string;
+  action: (e: any) => void;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, action, ...props}) => {
-    return (
-        <>
-    <button onClick={action}{...props}>{label}</button>
-    <style jsx>{`
+const Button: React.FC<ButtonProps> = ({ label, action, ...props }) => {
+  return (
+    <>
+      <button onClick={action} {...props}>
+        {label}
+      </button>
+      <style jsx>{`
         background-color: ${globalColors.primary};
         color: white;
         border-radius: 40px;
-        font-size: 1.4rem;
+        font-size: ${fontSizes.small};
+        font-family: ${fontFamily.primary};
         height: 50px;
         width: 180px;
 
         :hover {
-            cursor: pointer;
+          cursor: pointer;
         }
-    `}</style>
+      `}</style>
     </>
-    )
-}
+  );
+};
 
 export default Button;

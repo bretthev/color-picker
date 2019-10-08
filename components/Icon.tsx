@@ -11,12 +11,17 @@ const Icon: React.FC<IconProps & React.ImgHTMLAttributes<{}>> = ({
   ...props
 }) => {
   return typeof action === "string" ? (
-    <a
-      href={action}
-      style={{ height: "100%", display: "flex", alignItems: "center" }}
-    >
-      <img src={`../static/${iconType}.svg`} {...props} />
-    </a>
+    <>
+      <a
+        href={action}
+        style={{ height: "100%", display: "flex", alignItems: "center" }}
+      >
+        <img src={`../static/${iconType}.svg`} {...props} />
+      </a>
+      <style jsx>{`
+        height: 60px;
+      `}</style>
+    </>
   ) : (
     <>
       <img src={`../static/${iconType}.svg`} {...props} onClick={action} />

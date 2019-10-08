@@ -1,4 +1,5 @@
 import { ColorType } from "../helpers/types";
+import { fontSizes, fontFamily } from "../helpers/styleUtils";
 
 interface ColorProps extends React.HTMLAttributes<HTMLElement> {
   colorProp: ColorType;
@@ -9,24 +10,28 @@ interface ColorProps extends React.HTMLAttributes<HTMLElement> {
 const ColorCard: React.FC<ColorProps> = ({
   colorProp,
   selectColor,
-  hideActive,
+  hideActive
 }) => {
   const borderColor = colorProp.active && !hideActive ? "black" : colorProp.hex;
   return (
     <>
-      <div className="color-card" onClick={selectColor && (e => selectColor(colorProp))}>
+      <div
+        className="color-card"
+        onClick={selectColor && (e => selectColor(colorProp))}
+      >
         <p className="color-label">{colorProp.hex}</p>
       </div>
       <style jsx>{`
         background-color: ${colorProp.hex};
         .color-label {
           color: #fff;
-          font-size: 1.4rem;
+          font-size: ${fontSizes.mobile};
           text-align: center;
+          font-family: ${fontFamily.primary};
         }
 
         .color-card {
-          height: 125px;
+          height: 75px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -36,6 +41,15 @@ const ColorCard: React.FC<ColorProps> = ({
 
         :hover {
           cursor: pointer;
+        }
+
+        @media (min-width: 600px) {
+          .color-card {
+            height: 125px;
+          }
+          .color-label {
+            font-size: ${fontSizes.small};
+          }
         }
       `}</style>
     </>

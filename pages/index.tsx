@@ -38,10 +38,29 @@ const Home: NextPage<HomeProps> = ({ firstColors, updateHeaderColors }) => {
 
   return (
     <>
-      <main className="color-list">
+      <div className="color-list">
         <ColorList colorList={colors} selectColor={toggleActive} />
-        <Button action={fetchMoreColors} label={"Load More"} />
-      </main>
+      </div>
+      <div className="button-container">
+        <Button
+          className="load-more"
+          action={fetchMoreColors}
+          label={"Load More"}
+        />
+      </div>
+      <style jsx>{`
+        .color-list {
+          padding-left: 40px;
+          padding-right: 20px;
+        }
+
+        .button-container {
+          margin-top: 30px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+      `}</style>
     </>
   );
 };

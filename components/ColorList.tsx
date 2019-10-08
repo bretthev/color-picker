@@ -14,7 +14,6 @@ const ColorList: React.FC<ColorListProps> = ({
   colorList,
   selectColor,
   hideActive,
-  savedPalette,
   deletePalette
 }) => {
   return (
@@ -32,9 +31,13 @@ const ColorList: React.FC<ColorListProps> = ({
       </div>
       <style jsx>{`
         display: grid;
-        grid-template-columns: repeat(auto-fit, 155px);
+        grid-template-columns: repeat(auto-fit, 100px);
         grid-gap: 25px;
-        padding: 10px;
+        padding: 10px 0;
+
+        @media (min-width: 600px) {
+          grid-template-columns: repeat(auto-fit, 155px);
+        }
       `}</style>
     </>
   );
