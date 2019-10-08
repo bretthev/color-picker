@@ -4,7 +4,7 @@
     <title>TrashIcon</title>
     <desc>Created with Sketch.</desc>
     <g id="NewEngenColorCart" stroke="none" stroke-width="1" fill="#fff" fill-rule="evenodd">
-        <g className="trash-can" id="Cart" transform="translate(-118.000000, -163.000000)" fill="#fff" fill-rule="nonzero">
+        <g className="trash-can" id="Cart" transform="translate(-118.000000, -163.000000)" fill="#d9d9d9" fill-rule="nonzero">
             <g id="CurrentColorCart" transform="translate(20.000000, 99.000000)">
                 <g id="Colors" transform="translate(0.000000, 54.000000)">
                     <g id="Palette">

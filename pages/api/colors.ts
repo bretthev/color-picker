@@ -1,4 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
+
+// get a big list of colors
 import namedColors from "color-name-list";
 
 export default (req: NextApiRequest, res: NextApiResponse) => {

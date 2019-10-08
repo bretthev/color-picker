@@ -4,22 +4,16 @@ import Header from "../components/Header";
 import { ColorType } from "../helpers/types";
 
 export interface ColorPageProps {
-  selectColors: (colors: ColorType[]) => void;
-  selectedColors: ColorType[];
+  updateHeaderColors: (colors: ColorType[]) => void;
 }
 
 class MyApp extends App {
-  // static async getInitialProps(appContext) {
-  //   // calls page's `getInitialProps` and fills `appProps.pageProps`
-  //   const appProps = await App.getInitialProps(appContext);
-  //   return { ...appProps }
-  // }
   state = {
     selectedColors: []
   };
 
-  updateSelected = (colors: ColorType[]) => {
-    this.setState({ selectedColors: colors });
+  setColors = (selectedColors: ColorType[]) => {
+    this.setState({ selectedColors });
   };
 
   render() {
@@ -27,13 +21,8 @@ class MyApp extends App {
     const { selectedColors } = this.state;
     return (
       <>
-        <Header selectedColors={selectedColors} />
-        <Component
-          {...pageProps}
-          selectColors={this.updateSelected}
-          selectedColors={selectedColors}
-        />
-        ;
+        <Header colors={selectedColors.length} />
+        <Component {...pageProps} updateHeaderColors={this.setColors} />
         <style jsx global>
           {`
             body {

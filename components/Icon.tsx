@@ -1,15 +1,12 @@
-type Icons = "trash" | "logo" | "cart";
-type IconSize = "header" | "body";
+export type Icons = "trash" | "logo" | "cart" | "trash-gray";
 
 interface IconProps extends React.ImgHTMLAttributes<{}> {
   iconType: Icons;
-  size?: IconSize;
-  action: string | (() => any);
+  action?: string | (() => any);
 }
 
-const Icon: React.SFC<IconProps & React.ImgHTMLAttributes<{}>> = ({
+const Icon: React.FC<IconProps & React.ImgHTMLAttributes<{}>> = ({
   iconType,
-  size,
   action,
   ...props
 }) => {
@@ -21,7 +18,14 @@ const Icon: React.SFC<IconProps & React.ImgHTMLAttributes<{}>> = ({
       <img src={`../static/${iconType}.svg`} {...props} />
     </a>
   ) : (
-    <img src={`../static/${iconType}.svg`} {...props} onClick={action} />
+    <>
+      <img src={`../static/${iconType}.svg`} {...props} onClick={action} />
+      <style jsx>{`
+        .delete-palette {
+          height: 40px;
+        }
+      `}</style>
+    </>
   );
 };
 

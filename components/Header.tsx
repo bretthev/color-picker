@@ -1,22 +1,16 @@
 import Icon from "./Icon";
 import { globalColors } from "../helpers/styleUtils";
-import { ColorType } from "../helpers/types";
 
 interface HeaderProps {
-  selectedColors: ColorType[];
+  colors?: number;
 }
 
-const Header: React.FC<HeaderProps> = ({ selectedColors }) => {
+const Header: React.FC<HeaderProps> = ({ colors }) => {
   return (
     <>
       <header className="header">
         <Icon iconType="logo" className="header-logo" action="/" />
-        <Icon
-          iconType="cart"
-          className="header- cart"
-          action="/cart"
-          data-badge={`${selectedColors.length}`}
-        />
+        <Icon iconType="cart" className="header- cart" action="/cart" />
       </header>
       <style jsx>{`
         .header {

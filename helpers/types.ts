@@ -3,3 +3,9 @@ export interface ColorType {
   hex: string;
   active?: boolean;
 }
+
+export interface PaletteType {
+  name: string;
+  colors: ColorType[];
+  id?: string;
+}
