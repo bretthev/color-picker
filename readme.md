@@ -30,3 +30,5 @@ npm run dev
 ```
 
 to start the development server.
+
+A deployed version of the application [can be found here](https://color-picker.bretthevia.now.sh/).
