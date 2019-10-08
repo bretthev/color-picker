@@ -1,17 +1,18 @@
 import axios from "axios";
 import { ColorType, PaletteType } from "./types";
+import { APP_ROOT } from "../config";
 
 // current colors
 export const fetchCurrentColors = async () => {
   const currentColors = await axios
-    .get("http://localhost:3000/api/currentColors")
+    .get(`${APP_ROOT}/api/currentColors`)
     .then(res => res.data);
   return currentColors as ColorType[];
 };
 
 export const updateCurrentColors = async (currentColors: ColorType[]) => {
   const updatedColors = await axios
-    .post("http://localhost:3000/api/currentColors", {
+    .post(`${APP_ROOT}/api/currentColors`, {
       selected: currentColors
     })
     .then(res => res.data);
@@ -21,7 +22,7 @@ export const updateCurrentColors = async (currentColors: ColorType[]) => {
 // colors
 export const getColors = async (offset: number = 0): Promise<ColorType[]> => {
   return axios
-    .get("http://localhost:3000/api/colors", {
+    .get(`${APP_ROOT}/api/colors`, {
       params: {
         offset
       }
@@ -38,23 +39,21 @@ interface UpdatedPalettes {
 
 export const fetchSavedPalettes = async () => {
   const palettes = await axios
-    .get("http://localhost:3000/api/palettes")
+    .get(`${APP_ROOT}/api/palettes`)
     .then(res => res.data);
   return palettes as PaletteType[];
 };
 
 export const savePalette = async (palette: PaletteType) => {
-  return axios
-    .post("http://localhost:3000/api/palettes", { palette })
-    .then(res => {
-      const { updatedPalettes, selected } = res.data as UpdatedPalettes;
-      return { updatedPalettes, selected };
-    });
+  return axios.post(`${APP_ROOT}/api/palettes`, { palette }).then(res => {
+    const { updatedPalettes, selected } = res.data as UpdatedPalettes;
+    return { updatedPalettes, selected };
+  });
 };
 
 export const deletePaletteById = async (paletteId: string) => {
   return axios
-    .delete("http://localhost:3000/api/palettes", {
+    .delete(`${APP_ROOT}/api/palettes`, {
       data: { paletteId }
     })
     .then(res => res.data);

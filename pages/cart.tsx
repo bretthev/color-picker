@@ -49,7 +49,7 @@ const Cart: NextPage<CartProps> = ({ selectedColors, savedPalettes }) => {
       color => color.hex !== colorToDelete.hex
     );
     setActiveColors(newColors);
-    await updateCurrentColors(newColors);
+    updateCurrentColors(newColors);
   };
 
   // update state, erase from db
@@ -58,7 +58,7 @@ const Cart: NextPage<CartProps> = ({ selectedColors, savedPalettes }) => {
       palette => palette.id !== paletteId
     );
     setTotalPalettes(newPalettes);
-    await deletePaletteById(paletteId);
+    deletePaletteById(paletteId);
   };
 
   return (
